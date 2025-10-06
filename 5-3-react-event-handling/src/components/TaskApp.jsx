@@ -27,7 +27,7 @@ export default function TaskApp() {
 
   
   const handleClearAll = () => {
-    // TODO: set tasks to empty array
+    setTasks([]);
   };
 
   return (
@@ -52,11 +52,10 @@ export default function TaskApp() {
       {/*Render Task List and Enable Delete */}
       <TaskList tasks={tasks} onDelete={handleDelete} />
       {/*Pass tasks and onDelete */}
-      <TaskList /* tasks={tasks} onDelete={handleDelete} */ />
 
       {/*Clear All */}
       <div className="footerRow">
-        <button className="btn btn--ghost" onClick={handleClearAll}>
+        <button className="btn btn--ghost" onClick={handleClearAll} disabled={tasks.length === 0}>
           Clear All
         </button>
       </div>
