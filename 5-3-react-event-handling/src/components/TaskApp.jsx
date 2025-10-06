@@ -3,8 +3,19 @@ import TaskList from "./TaskList";
 
 export default function TaskApp() {
   const [text, setText] = useState("");
+
+  const [tasks, setTasks] = useState([]);
   
   const handleSubmit = () => {
+    const value = text.trim();
+    if (value === "") return;
+
+    const newTask = {
+      id: Date.now(), 
+      text: value,
+    };
+    setTasks([...tasks, newTask]);
+    setText("");
     
    
   };
@@ -39,6 +50,7 @@ export default function TaskApp() {
       </div>
       <p className="muted">Current input: <strong>{text}</strong></p>
       {/*Render Task List and Enable Delete */}
+      <TaskList tasks={tasks} onDelete={handleDelete} />
       {/*Pass tasks and onDelete */}
       <TaskList /* tasks={tasks} onDelete={handleDelete} */ />
 

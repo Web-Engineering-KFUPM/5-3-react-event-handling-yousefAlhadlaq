@@ -5,9 +5,19 @@ export default function TaskList({ tasks, onDelete }) {
   return (
     <ul className="list">
       {/* Task 2 – Display Placeholder if No Tasks Yet */}
-
-      {/* Task 2 & 3 – Map tasks to TaskItem */}
-      
+      {tasks.length === 0 ? (
+        <li className="list__item list__item--placeholder">No tasks yet</li>
+      ) : (
+        /* Task 2 & 3 – Map tasks to TaskItem */
+        tasks.map((task) => (
+          <TaskItem
+            key={task.id}     // React needs a unique key
+            id={task.id}      // pass id for delete
+            text={task.text}  // pass text to display
+            onDelete={onDelete} // pass delete handler
+          />
+        ))
+      )}
     </ul>
   );
 }
